@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "This program make by Trofim Postnikov in 22.01.2024 year and work on Ubuntu LTS 22.04.03 Linux version"
+echo ""
+echo "https://vk.com/trofim_post2003 - VK"
+echo "https://github.com/Faster-knight - GitHub"
+echo ""
+echo "--------------- WARNING-s ---------------"
+echo "[!!!] We use root and apt manager in this programm [!!!]"
+echo "List of installing:"
+echo " - Java 8 openjdk-jre and JavaFX"
+echo " - unzip command"
+echo " - create start bash shell command"
+echo ""
+echo "[!!!] Plase if ypu need other Java jdk-s in this PC device delete his [!!!]"
+echo "TLauncher working on Java 8 open-jdk and if you need other jdk-s shell can connecting"
+echo "to other jdk-s in this PC device in start shell script"
+echo "Check Java version JDK command: java --version"
+echo ""
+echo "[!!!] Application run TLauncher-2.895.jar file [!!!]"
+echo "if start shell script in not run use commands:"
+echo "1) cd ~"
+echo "2) nano start"
+echo "3) replace name launch TLauncher file in command: sudo java -jar [new_name_launch_file]"
+echo "-----------------------------------------"
+echo ""
+if [ -x /usr/bin/lsb_release ]; then
+	dist_name=$(lsb_release -is)
+	if [ "$dist_name" = "Ubuntu" ]; then
+		echo ""
+		echo "updating apt manager..."
+		sudo apt update
+		echo ""
+		echo "Installing Java 8 openjdk-jre component..."
+		sudo apt-get install openjdk-8-jre
+		echo ""
+		echo "Installing JavaFX..."
+		sudo apt-get install openjfx
+		echo ""
+		echo "installing minicraft launcher from Linux..."
+		cd ~
+		mkdir minecraft
+		cd minecraft
+		wget https://tlauncher.org/jar
+		sudo apt install unzip
+		unzip jar
+		echo ""
+		echo "Creating start shell script..."
+		echo >> start
+		echo "#!/bin/bash" >> start
+		echo "" >> start
+		echo "sudo java -jar TLauncher-2.895.jar" >> start
+		echo ""
+		cd ~
+		echo "-------------------------------------------"
+		echo "|your files in local minecraft folder     |"
+		echo "|if you need start TLauncher use commands:|"
+		echo "|1) cd ~ <- go to home user root folder   |"
+		echo "|2) cd minecraft <- go to minecraft folder|"
+		echo "|3) bash ./start <- to start game!        |"
+		echo "-------------------------------------------"
+		echo "Installation was finished!"
+	else
+		echo "This program working on Ubuntu LTS 22.04.03"
+	fi
+else
+	echo "Unknown OS version"
+fi
+echo "If program working is bad please check start print program in this terminal (right up to WARNING-s) for need information"
+echo "else use command: sudo apt-get update if you use Ubuntu Linux system"
+echo "Program finished with code 0"
+exit 0
